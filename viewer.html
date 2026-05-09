@@ -17,17 +17,19 @@
 </head>
 <body>
 
-<iframe id="pdf"></iframe>
+<iframe id="frame"></iframe>
 
 <script>
   const params = new URLSearchParams(window.location.search);
   const file = params.get("file");
-  const page = window.location.hash || "#page=1";
 
-  const base = "https://temp93017-boop.github.io/TempShare/";
-  const url = base + file + page;
-
-  document.getElementById("pdf").src = url;
+  if (!file) {
+    document.body.innerHTML = "Missing file parameter";
+  } else {
+    const hash = window.location.hash || "";
+    const url = "./" + file + hash;
+    document.getElementById("frame").src = url;
+  }
 </script>
 
 </body>
